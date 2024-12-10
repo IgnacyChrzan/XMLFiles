@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_HIERARCHYDATAOUT" Id="{d93518ad-37aa-413d-8581-d68e65395f97}">
+    <Declaration><![CDATA[TYPE ST_HIERARCHYDATAOUT :
+STRUCT
+	UNITQTY		:STRING;
+	GTIN		:STRING;
+	EAN			:STRING;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

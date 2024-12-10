@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_PRODUCT" Id="{6bf6d8e2-df10-4033-bb13-7e6e784cbb21}">
+    <Declaration><![CDATA[TYPE ST_PRODUCT :
+STRUCT
+	BATCHID				:STRING;
+	PRODUCTIONORDER		:STRING;
+	PITCODE				:STRING;
+	HIERARCHYDATALIST	:STRING;
+	UOM					:STRING;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

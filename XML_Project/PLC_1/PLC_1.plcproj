@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6b514d5b-9601-49a0-814a-cb8bbd03cf49}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>PLC_1</Name>
+    <ProgramVersion>3.1.4024.0</ProgramVersion>
+    <Application>{643d4dd8-6543-4dbe-8d80-e21ac6d36191}</Application>
+    <TypeSystem>{3f5abe0e-8298-462d-a067-8261d64efd8f}</TypeSystem>
+    <Implicit_Task_Info>{f6ae1ee7-3121-4285-98c1-8470d8bc533a}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{61724050-8abf-428d-ae76-793afdb44a02}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{90a2f26b-6107-4a62-948d-c3316ad35948}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{bddb77d0-7519-4cef-913a-c38713896628}</LibraryReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DUTs\ProductionChange\PRODUCTINFORMATION\PRODUCT\HIERARCHYDATALIST\HIERARCHYDATACS\ST_HIERARCHYDATACS.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ProductionChange\PRODUCTINFORMATION\PRODUCT\HIERARCHYDATALIST\HIERARCHYDATAOUT\ST_HIERARCHYDATAOUT.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ProductionChange\PRODUCTINFORMATION\PRODUCT\HIERARCHYDATALIST\HIERARCHYDATAPK\ST_HIERARCHYDATAPK.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ProductionChange\PRODUCTINFORMATION\PRODUCT\HIERARCHYDATALIST\ST_HIERARCHYDATALIST.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ProductionChange\PRODUCTINFORMATION\PRODUCT\ST_PRODUCT.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ProductionChange\PRODUCTINFORMATION\SETTINGS\TOLERANCETHRESHOLDOUT\ST_GOODREADPERCENTAGEOUT.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ProductionChange\PRODUCTINFORMATION\SETTINGS\ST_SETTINGS.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ProductionChange\PRODUCTINFORMATION\SETTINGS\TOLERANCETHRESHOLDPK\ST_TOLERANCETHRESHOLDPK.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ProductionChange\PRODUCTINFORMATION\ST_PRODUCTINFORMATION.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ProductionChange\ST_MESSAGEHEADER.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FB_XMLRead.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DUTs" />
+    <Folder Include="DUTs\ProductionChange" />
+    <Folder Include="DUTs\ProductionChange\PRODUCTINFORMATION" />
+    <Folder Include="DUTs\ProductionChange\PRODUCTINFORMATION\PRODUCT" />
+    <Folder Include="DUTs\ProductionChange\PRODUCTINFORMATION\PRODUCT\HIERARCHYDATALIST" />
+    <Folder Include="DUTs\ProductionChange\PRODUCTINFORMATION\PRODUCT\HIERARCHYDATALIST\HIERARCHYDATAPK" />
+    <Folder Include="DUTs\ProductionChange\PRODUCTINFORMATION\PRODUCT\HIERARCHYDATALIST\HIERARCHYDATAOUT" />
+    <Folder Include="DUTs\ProductionChange\PRODUCTINFORMATION\PRODUCT\HIERARCHYDATALIST\HIERARCHYDATACS" />
+    <Folder Include="DUTs\ProductionChange\PRODUCTINFORMATION\SETTINGS" />
+    <Folder Include="DUTs\ProductionChange\PRODUCTINFORMATION\SETTINGS\TOLERANCETHRESHOLDOUT" />
+    <Folder Include="DUTs\ProductionChange\PRODUCTINFORMATION\SETTINGS\TOLERANCETHRESHOLDPK" />
+    <Folder Include="GVLs" />
+    <Folder Include="VISUs" />
+    <Folder Include="POUs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>TABLE_UPPER_BOUND</Key>
+          <Value>15</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_EXP</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_ADDRESS</Key>
+          <Value>20</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_COMMENT</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_OUTSTRING</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>TABLE_SHOW_VALID_ITEMS</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+      </Parameters>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_XmlDataSrv">
+      <DefaultResolution>Tc2_XmlDataSrv, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_XmlDataSrv</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_JsonXml">
+      <DefaultResolution>Tc3_JsonXml, * (Beckhoff Automation GmbH)</DefaultResolution>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" />
+      <d n="Values" t="Hashtable" />
+    </o>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

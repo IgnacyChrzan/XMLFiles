@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_HIERARCHYDATALIST" Id="{e0bf9814-02fe-40a9-a2f4-09508059ba4f}">
+    <Declaration><![CDATA[TYPE ST_HIERARCHYDATALIST :
+STRUCT
+	TRACKINGLEVELS		:STRING;
+	HIERARCHYDATAPK		:STRING;
+	HIERARCHYDATAOUT	:STRING;
+	HIERARCHYDATACS		:STRING;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

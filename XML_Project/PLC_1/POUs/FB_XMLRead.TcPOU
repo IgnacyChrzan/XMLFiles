@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="FB_XMLRead" Id="{cbbbc43d-edf9-4a81-a73e-eb6873779509}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_XMLRead
+VAR
+	fbXmlSrvRead				:	FB_XmlSrvRead;
+	fbXmlSrvReadByName			:	FB_XmlSrvReadByName;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="FB_XMLRead">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

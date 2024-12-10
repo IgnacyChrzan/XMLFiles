@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_SETTINGS" Id="{409ecbfb-dc78-43a7-8dd5-2b2768f91af2}">
+    <Declaration><![CDATA[TYPE ST_SETTINGS :
+STRUCT
+	TOLERANCETHRESHOLDPK	:STRING;
+	TOLERANCETHRESHOLDOUT	:STRING;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -5,13 +5,48 @@
 VAR
 	fbXmlSrvRead				:	FB_XmlSrvRead;
 	fbXmlSrvReadByName			:	FB_XmlSrvReadByName;
+	xExecute					:	BOOL:=FALSE;
+	
+	sFilePath					:T_MaxString := 'C:\Users\Ignacy\Downloads\PCM_Template.xml';
+	sXPath						:T_MaxString := '/ProductionChange/MESSAGEHEADER';
+	sXPath1						:T_MaxString := '/ProductionChange/PRODUCTINFORMATION';
+	iStep						:INT;
+	st_productionchange			:ST_ProductionChange;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[
+	fbXmlSrvRead(
+   		sNetId := '', 
+    	pSymAddr := ADR(st_productionchange.MESSAGEHEADER),
+  		cbSymSize := SIZEOF(st_productionchange.MESSAGEHEADER),
+    	sFilePath := sFilePath,
+    	sXPath := sXPath,
+    	bExecute := xExecute);
+	fbXmlSrvRead(
+    	sNetId := '', 
+    	pSymAddr := ADR(st_productionchange.PRODUCTINFORMATION),
+   		cbSymSize := SIZEOF(st_productionchange.PRODUCTINFORMATION),
+    	sFilePath := sFilePath,
+    	sXPath := sXPath1,
+    	bExecute := xExecute);
+
+	IF NOT xExecute THEN
+  	  xExecute := TRUE;
+	END_IF;
+
+	IF NOT fbXmlSrvRead.bBusy AND xExecute THEN
+   	 xExecute := FALSE; 
+	END_IF;]]></ST>
     </Implementation>
     <LineIds Name="FB_XMLRead">
-      <LineId Id="9" Count="0" />
+      <LineId Id="235" Count="0" />
+      <LineId Id="221" Count="0" />
+      <LineId Id="200" Count="5" />
+      <LineId Id="251" Count="5" />
+      <LineId Id="250" Count="0" />
+      <LineId Id="187" Count="0" />
+      <LineId Id="282" Count="6" />
     </LineIds>
   </POU>
 </TcPlcObject>

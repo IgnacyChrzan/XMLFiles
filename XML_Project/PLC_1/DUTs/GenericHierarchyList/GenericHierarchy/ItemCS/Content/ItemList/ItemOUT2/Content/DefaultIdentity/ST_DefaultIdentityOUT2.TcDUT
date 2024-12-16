@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_DefaultIdentityOUT2" Id="{f97c2589-cd89-4b40-b37b-249ac7452243}">
+    <Declaration><![CDATA[TYPE ST_DefaultIdentityOUT2 :
+STRUCT
+	SKU						:STRING;
+	GTIN					:STRING;
+	ProductionOrder			:STRING;
+	LocalProductionOrder	:STRING;
+	PITCode					:STRING;
+	BatchID					:STRING;
+	ProductionLine			:STRING;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

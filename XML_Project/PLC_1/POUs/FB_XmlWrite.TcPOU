@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="FB_XmlWrite" Id="{663e8504-ee37-42e9-863f-03a186806933}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_XmlWrite
+VAR
+	    // Obiekty XML
+    fbXml                : FB_XmlDomParser;
+    objRoot              : SXmlNode;
+    objGenericHierachyList : SXmlNode;
+	objAttributeXSD		:	SXmlNode;
+  	objAttributeXSI		:	SXmlNode;
+    // Atrybuty XML
+    objAttribute         : SXmlAttribute;
+    sXmlString           : STRING(1000); // Przechowywanie XML w postaci tekstowej
+
+    // Flagi kontrolne
+    xCreate              : BOOL := FALSE; // Flaga inicjalizacji tworzenia XML
+    iFileWriteStep       : INT := 0;      // Kroki zapisu pliku
+	xBusy : BOOL := FALSE;  
+    // Operacje na plikach
+    fbFileOpen           : FB_FileOpen;   // Otwieranie pliku
+    fbFileClose          : FB_FileClose;  // Zamykanie pliku
+    fbFileWrite          : FB_FileWrite;  // Zapis pliku
+    uiFileHandle         : UINT := 0;     // Uchwyt pliku
+    sFilePath            : STRING(255) := 'C:\Users\Ignacy\Desktop\CHM_Temp.xml'; // Ścieżka do pliku
+	
+	
+	
+	
+	
+	
+	
+	
+	GenericHierarchyList	:	ST_GenericHierarchyList;
+	fbxmlwrite	:	FB_XmlSrvWrite;
+	xExecute	: 	BOOL;
+	sXPathWrite		:T_MaxString:='/GenericHierarchyList';
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF xCreate THEN
+  objRoot := fbXml.GetDocumentNode();
+  // Root tree
+  objGenericHierachyList := fbXml.AppendNode(objRoot, 'GenericHierarchyList');
+  objAttributeXSD := fbXml.AppendAttribute(objGenericHierachyList, 'xmlns:xsd', 'http://www.w3.org/2001/XMLSchema');
+  objAttributeXSI := fbXml.AppendAttribute(objGenericHierachyList, 'xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
+  fbXml.CopyDocument(sXmlString, SIZEOF(sXmlString)); // Zapisuje XML w zmiennej `sXmlString`
+END_IF
+
+uiFileHandle:=fbFileOpen.hFile;
+
+CASE iFileWriteStep OF 
+    0: // Waiting for execute
+        IF xCreate THEN
+			fbFileOpen.bExecute := TRUE;
+            xCreate := FALSE; // Reset execute 
+        END_IF
+		
+		IF fbFileOpen.bBusy THEN
+            iFileWriteStep := 1; // Go to step 1
+		END_IF
+
+    1: // Reset xExecute and wait for xBusy reset
+        fbFileOpen(bExecute := FALSE); // Stopping opening of file
+        IF NOT fbFileOpen.bBusy THEN  
+           iFileWriteStep := 2; // Go to step 2
+        END_IF
+	
+    
+    2: // Writing to file
+// Lenght of string
+		fbFileWrite.bExecute := TRUE;
+		IF fbFileWrite.bBusy THEN
+            iFileWriteStep := 3; // Go to step 3
+		END_IF
+
+    3:
+        fbFileWrite(bExecute := FALSE); // Stop writing 
+        IF NOT xBusy THEN
+                iFileWriteStep := 4; // Go to step 0
+        END_IF
+	4:
+		fbFileClose.bExecute := TRUE;
+		IF fbFileClose.bBusy THEN
+			iFileWriteStep := 5;
+		END_IF
+	5:
+		fbFileClose.bExecute := FALSE;
+		IF NOT fbFileClose.bBusy THEN
+			iFileWriteStep := 0;
+		END_IF
+END_CASE
+
+fbFileOpen(
+                sNetId := '', 
+                sPathName := sFilePath, 
+                ePath := PATH_GENERIC, 
+                nMode := FOPEN_MODEWRITE OR FOPEN_MODEPLUS, //modeplus
+                bExecute := , 
+                tTimeout := T#2S, 
+                bBusy => xBusy, 
+                bError =>, 
+                nErrId =>, 
+                hFile => uiFileHandle
+            );
+fbFileWrite(
+	sNetId:='' , 
+	hFile:=uiFileHandle , 
+	pWriteBuff:=ADR(sXmlString)  , 
+	cbWriteLen:=LEN(sXmlString) , 
+	bExecute:= , 
+	cbWrite=> );
+
+fbFileClose(
+	sNetId:= '', 
+	hFile:=uiFileHandle , 
+	bExecute:= , 
+	tTimeout:=T#2S , 
+	bBusy=> , 
+	bError=> , 
+	nErrId=> );
+	
+	
+	
+	
+	
+	
+	
+IF xExecute  THEN
+   // Przygotowanie bExecute i ustawienie wartości
+   fbxmlwrite.bExecute := TRUE;
+   xExecute := FALSE; // Reset xExecute, aby uniknąć wielokrotnego wykonania
+END_IF
+
+// Wywołanie FB_XmlSrvWrite
+fbxmlwrite(
+    nMode := XMLSRV_ADDMISSING,        // Tryb dodawania brakujących elementów
+    pSymAddr := ADR(GenericHierarchyList),         // Adres zmiennej struktury
+    cbSymSize := SIZEOF(GenericHierarchyList),     // Rozmiar struktury
+    sFilePath := sFilePath,       // Ścieżka do pliku XML
+    sXPath := sXPathWrite,             // Ścieżka XPath do elementu
+    bExecute := fbxmlwrite.bExecute    // Ustawienie flagi wykonania
+);
+
+// Reset bExecute po zakończeniu operacji
+IF fbxmlwrite.bBusy THEN
+   fbxmlwrite.bExecute := FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_XmlWrite">
+      <LineId Id="698" Count="3" />
+      <LineId Id="839" Count="1" />
+      <LineId Id="703" Count="0" />
+      <LineId Id="705" Count="72" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="812" Count="6" />
+      <LineId Id="820" Count="18" />
+      <LineId Id="819" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

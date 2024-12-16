@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_ItemCS" Id="{97e8bab8-62ce-4ad8-aaa0-440faf53629b}">
+    <Declaration><![CDATA[TYPE ST_ItemCS :
+STRUCT
+	Identity		:ST_Identity;
+	ItemState		:STRING;
+	RejectReason	:ST_RejectReason;
+	logs			:ST_logs;
+	NoRead			:STRING;
+	Content			:ST_Content;
+	ProductionOrder		:STRING;
+	LocalProductionOrder:STRING;
+	PITCode				:STRING;
+	BatchID				:STRING;
+	ProductionLine		:STRING;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

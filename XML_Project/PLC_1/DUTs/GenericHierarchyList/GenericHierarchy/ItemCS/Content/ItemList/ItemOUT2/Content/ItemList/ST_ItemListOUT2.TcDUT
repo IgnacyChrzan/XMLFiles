@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_ItemListOUT2" Id="{df349710-0708-4f6c-8566-af5f33e89f6c}">
+    <Declaration><![CDATA[TYPE ST_ItemListOUT2 :
+STRUCT
+	ItemPK1 	:ST_ItemPK1_OUT2;
+	ItemPK2 	:ST_ItemPK2_OUT2;
+	ItemPK3 	:ST_ItemPK3_OUT2;
+	ItemPK4 	:ST_ItemPK4_OUT2;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_ContentOUT2" Id="{5f20f260-060a-4b28-9a67-86048a84f4a4}">
+    <Declaration><![CDATA[TYPE ST_ContentOUT2 :
+STRUCT
+	DefaultIdentity   :ST_DefaultIdentityOUT2;
+	ExpectedItemCount	:STRING;
+	ItemReadRate		:STRING;
+	ItemList			:ST_ItemListOUT2;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

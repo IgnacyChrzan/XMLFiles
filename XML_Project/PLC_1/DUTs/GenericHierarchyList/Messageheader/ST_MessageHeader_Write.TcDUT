@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_MessageHeader_Write" Id="{f5cfaae0-e604-40b5-8d93-647a1c5b6a00}">
+    <Declaration><![CDATA[TYPE ST_MessageHeader_Write :
+STRUCT
+	ReferenceID		:	STRING;
+	CreationTimeLocalUTC	:	STRING;
+	MessageType		:	STRING;
+	SenderSystem	:	STRING;
+	ReceiverSystem	:	STRING;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

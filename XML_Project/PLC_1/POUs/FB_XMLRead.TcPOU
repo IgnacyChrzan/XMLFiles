@@ -15,15 +15,14 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-	fbXmlSrvRead(
+      <ST><![CDATA[fbXmlSrvRead(
    		sNetId := '', 
     	pSymAddr := ADR(st_productionchange.MESSAGEHEADER),
   		cbSymSize := SIZEOF(st_productionchange.MESSAGEHEADER),
     	sFilePath := sFilePath,
     	sXPath := sXPath,
     	bExecute := xExecute);
-	fbXmlSrvRead(
+fbXmlSrvRead(
     	sNetId := '', 
     	pSymAddr := ADR(st_productionchange.PRODUCTINFORMATION),
    		cbSymSize := SIZEOF(st_productionchange.PRODUCTINFORMATION),
@@ -40,7 +39,6 @@ END_VAR
 	END_IF;]]></ST>
     </Implementation>
     <LineIds Name="FB_XMLRead">
-      <LineId Id="235" Count="0" />
       <LineId Id="221" Count="0" />
       <LineId Id="200" Count="5" />
       <LineId Id="251" Count="5" />

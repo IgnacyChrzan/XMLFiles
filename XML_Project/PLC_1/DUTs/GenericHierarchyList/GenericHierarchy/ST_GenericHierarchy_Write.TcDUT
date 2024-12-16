@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_GenericHierarchy_Write" Id="{f3f12d3d-3765-4f29-89c4-b2f6495b8771}">
+    <Declaration><![CDATA[TYPE ST_GenericHierarchy_Write :
+STRUCT
+	HierarchyType		:STRING;
+	_ACTION				:STRING;
+	TrackingLevels		:STRING;
+	TrackingIndicator	:STRING;
+	ItemCS				:ST_ItemCS;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

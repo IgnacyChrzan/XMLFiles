@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_GenericHierarchyList" Id="{5d6c66b5-721c-4ac8-9335-f5dc2bb19fc2}">
+    <Declaration><![CDATA[TYPE ST_GenericHierarchyList :
+STRUCT
+	MessageHeader 		: 	ST_MessageHeader_Write;
+	Factory 			: 	STRING;
+	GenericHierarchy	:	ST_GenericHierarchy_Write;
+	Attributes			:	STRING;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

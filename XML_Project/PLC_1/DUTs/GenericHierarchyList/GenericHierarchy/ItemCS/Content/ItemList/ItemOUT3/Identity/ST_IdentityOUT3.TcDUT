@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_IdentityOUT3" Id="{5c76ef62-5107-47f1-b166-03ba6ccbe740}">
+    <Declaration><![CDATA[TYPE ST_IdentityOUT3 :
+STRUCT
+	ID	:STRING;
+	ReadQuality:STRING;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

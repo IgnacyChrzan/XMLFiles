@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_ItemPK4_OUT1" Id="{6948ebea-aafc-43c5-86ba-760d0477ce32}">
+    <Declaration><![CDATA[TYPE ST_ItemPK4_OUT1 :
+STRUCT
+	Identity		:ST_Identity_PK4_OUT1;
+	ItemState		:STRING;
+	RejectReason	:ST_RejectReason_PK4_OUT1;
+	logs			:ST_logs_PK4_OUT1;
+	NoRead			:STRING;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

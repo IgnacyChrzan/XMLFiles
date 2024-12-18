@@ -3,19 +3,32 @@
   <POU Name="MAIN" Id="{0ca78153-12a1-425f-a0ef-fffe244bf1e5}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	fbXmlRead	:	FB_XMLRead;
-	fbXmlWrite	:	FB_XmlWrite;
+	fbXmlRead				:FB_XMLRead;
+	fbXmlWrite				:FB_XmlWrite;
+	xExecuteRead			:BOOL;
+	
+	xCreateMainStructureXML	:BOOL;
+	xWriteValuesToXML		:BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbXmlRead();
 fbXmlWrite();
-]]></ST>
+//Press to read values from XML file
+xExecuteRead:=fbXmlRead.xExecute;
+
+//Press Create to create empty XML file, and then execute to write rest of values 
+xCreateMainStructureXML:=fbXmlWrite.xCreate;
+xWriteValuesToXML:=fbXmlWrite.xExecute;]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
       <LineId Id="52" Count="0" />
+      <LineId Id="62" Count="0" />
       <LineId Id="28" Count="0" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="63" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

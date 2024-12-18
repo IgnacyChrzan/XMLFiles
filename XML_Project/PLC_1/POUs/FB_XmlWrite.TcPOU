@@ -3,52 +3,43 @@
   <POU Name="FB_XmlWrite" Id="{663e8504-ee37-42e9-863f-03a186806933}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_XmlWrite
 VAR
-	    // Obiekty XML
-    fbXml                : FB_XmlDomParser;
-    objRoot              : SXmlNode;
-    objGenericHierachyList : SXmlNode;
-	objAttributeXSD		:	SXmlNode;
+    fbXml                : FB_XmlDomParser;	// FB for creating XML file
+    objRoot              : SXmlNode;		// Root of xml
+    objGenericHierachyList : SXmlNode;		// Main root  
+	objAttributeXSD		:	SXmlNode;		//Attributes of main root
   	objAttributeXSI		:	SXmlNode;
-    // Atrybuty XML
-    objAttribute         : SXmlAttribute;
-    sXmlString           : STRING(1000); // Przechowywanie XML w postaci tekstowej
+    sXmlString           : STRING(1000); // XML in STRING
 
-    // Flagi kontrolne
-    xCreate              : BOOL := FALSE; // Flaga inicjalizacji tworzenia XML
-    iFileWriteStep       : INT := 0;      // Kroki zapisu pliku
+    xCreate              : BOOL := FALSE; // Creating XMLFILE
+    iFileWriteStep       : INT := 0;      // Steps of saving file
 	xBusy : BOOL := FALSE;  
-    // Operacje na plikach
-    fbFileOpen           : FB_FileOpen;   // Otwieranie pliku
-    fbFileClose          : FB_FileClose;  // Zamykanie pliku
-    fbFileWrite          : FB_FileWrite;  // Zapis pliku
-    uiFileHandle         : UINT := 0;     // Uchwyt pliku
-    sFilePath            : STRING(255) := 'C:\Users\Ignacy\Desktop\CHM_Temp.xml'; // Ścieżka do pliku
+ 
+    fbFileOpen           : FB_FileOpen;   // Opening file
+    fbFileClose          : FB_FileClose;  // Closing file
+    fbFileWrite          : FB_FileWrite;  // Saving file
+    uiFileHandle         : UINT := 0;     
+    sFilePath            : STRING(255) := 'C:\Users\Ignacy\Desktop\CHM_Temp.xml'; // File Path
 	
 	
-	
-	
-	
-	
-	
-	
-	GenericHierarchyList	:	ST_GenericHierarchyList;
-	fbxmlwrite	:	FB_XmlSrvWrite;
-	xExecute	: 	BOOL;
-	sXPathWrite		:T_MaxString:='/GenericHierarchyList';
+	GenericHierarchyList	:	ST_GenericHierarchyList;	// Main structure
+	fbxmlwrite	:	FB_XmlSrvWrite;							//Writing Xml
+	xExecute	: 	BOOL;									// Writing values to Xml
+	sXPathWrite		:T_MaxString:='/GenericHierarchyList';	// Path to main root
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF xCreate THEN
+      <ST><![CDATA[//Creating GenericHierarchyList
+IF xCreate THEN
   objRoot := fbXml.GetDocumentNode();
   // Root tree
   objGenericHierachyList := fbXml.AppendNode(objRoot, 'GenericHierarchyList');
   objAttributeXSD := fbXml.AppendAttribute(objGenericHierachyList, 'xmlns:xsd', 'http://www.w3.org/2001/XMLSchema');
   objAttributeXSI := fbXml.AppendAttribute(objGenericHierachyList, 'xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
-  fbXml.CopyDocument(sXmlString, SIZEOF(sXmlString)); // Zapisuje XML w zmiennej `sXmlString`
+  fbXml.CopyDocument(sXmlString, SIZEOF(sXmlString)); // Saving sXmlString in string
 END_IF
 
 uiFileHandle:=fbFileOpen.hFile;
-
+//Saving to a file
 CASE iFileWriteStep OF 
     0: // Waiting for execute
         IF xCreate THEN
@@ -68,7 +59,6 @@ CASE iFileWriteStep OF
 	
     
     2: // Writing to file
-// Lenght of string
 		fbFileWrite.bExecute := TRUE;
 		IF fbFileWrite.bBusy THEN
             iFileWriteStep := 3; // Go to step 3
@@ -77,8 +67,9 @@ CASE iFileWriteStep OF
     3:
         fbFileWrite(bExecute := FALSE); // Stop writing 
         IF NOT xBusy THEN
-                iFileWriteStep := 4; // Go to step 0
+                iFileWriteStep := 4; // Go to step 4
         END_IF
+	//Closing file
 	4:
 		fbFileClose.bExecute := TRUE;
 		IF fbFileClose.bBusy THEN
@@ -125,36 +116,41 @@ fbFileClose(
 	
 	
 	
-	
+//Write values from structures into XML file
 IF xExecute  THEN
-   // Przygotowanie bExecute i ustawienie wartości
    fbxmlwrite.bExecute := TRUE;
-   xExecute := FALSE; // Reset xExecute, aby uniknąć wielokrotnego wykonania
+   xExecute := FALSE; 
 END_IF
 
-// Wywołanie FB_XmlSrvWrite
 fbxmlwrite(
-    nMode := XMLSRV_ADDMISSING,        // Tryb dodawania brakujących elementów
-    pSymAddr := ADR(GenericHierarchyList),         // Adres zmiennej struktury
-    cbSymSize := SIZEOF(GenericHierarchyList),     // Rozmiar struktury
-    sFilePath := sFilePath,       // Ścieżka do pliku XML
-    sXPath := sXPathWrite,             // Ścieżka XPath do elementu
-    bExecute := fbxmlwrite.bExecute    // Ustawienie flagi wykonania
+    nMode := XMLSRV_ADDMISSING,       
+    pSymAddr := ADR(GenericHierarchyList),         
+    cbSymSize := SIZEOF(GenericHierarchyList),   
+    sFilePath := sFilePath,    
+    sXPath := sXPathWrite,             
+    bExecute := fbxmlwrite.bExecute    
 );
-
-// Reset bExecute po zakończeniu operacji
 IF fbxmlwrite.bBusy THEN
    fbxmlwrite.bExecute := FALSE;
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_XmlWrite">
+      <LineId Id="876" Count="0" />
       <LineId Id="698" Count="3" />
       <LineId Id="839" Count="1" />
       <LineId Id="703" Count="0" />
-      <LineId Id="705" Count="72" />
+      <LineId Id="705" Count="22" />
+      <LineId Id="729" Count="9" />
+      <LineId Id="877" Count="0" />
+      <LineId Id="739" Count="38" />
       <LineId Id="137" Count="0" />
       <LineId Id="812" Count="6" />
-      <LineId Id="820" Count="18" />
+      <LineId Id="820" Count="0" />
+      <LineId Id="822" Count="2" />
+      <LineId Id="826" Count="6" />
+      <LineId Id="878" Count="0" />
+      <LineId Id="924" Count="0" />
+      <LineId Id="837" Count="1" />
       <LineId Id="819" Count="0" />
     </LineIds>
   </POU>

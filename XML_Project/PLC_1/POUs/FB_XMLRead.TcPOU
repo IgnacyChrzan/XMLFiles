@@ -3,25 +3,25 @@
   <POU Name="FB_XMLRead" Id="{cbbbc43d-edf9-4a81-a73e-eb6873779509}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_XMLRead
 VAR
-	fbXmlSrvRead				:	FB_XmlSrvRead;
-	fbXmlSrvReadByName			:	FB_XmlSrvReadByName;
-	xExecute					:	BOOL:=FALSE;
+	fbXmlSrvRead				:	FB_XmlSrvRead;			//Reading from xml
+	xExecute					:	BOOL:=FALSE;			// Execute Button
 	
-	sFilePath					:T_MaxString := 'C:\Users\Ignacy\Downloads\PCM_Template.xml';
-	sXPath						:T_MaxString := '/ProductionChange/MESSAGEHEADER';
-	sXPath1						:T_MaxString := '/ProductionChange/PRODUCTINFORMATION';
-	iStep						:INT;
-	st_productionchange			:ST_ProductionChange;
+	sFilePath					:T_MaxString := 'C:\Users\Ignacy\Downloads\PCM_Template.xml';	//File path
+	sXPath						:T_MaxString := '/ProductionChange/MESSAGEHEADER';				//Path to messageheader root
+	sXPath1						:T_MaxString := '/ProductionChange/PRODUCTINFORMATION';			//Path to productinformation root			
+	st_productionchange			:ST_ProductionChange;											// Main structure
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbXmlSrvRead(
+      <ST><![CDATA[//Reading from MessageHeader 
+fbXmlSrvRead(
    		sNetId := '', 
     	pSymAddr := ADR(st_productionchange.MESSAGEHEADER),
   		cbSymSize := SIZEOF(st_productionchange.MESSAGEHEADER),
     	sFilePath := sFilePath,
     	sXPath := sXPath,
     	bExecute := xExecute);
+//Reading from ProductInformation
 fbXmlSrvRead(
     	sNetId := '', 
     	pSymAddr := ADR(st_productionchange.PRODUCTINFORMATION),
@@ -39,8 +39,10 @@ fbXmlSrvRead(
 	END_IF;]]></ST>
     </Implementation>
     <LineIds Name="FB_XMLRead">
+      <LineId Id="301" Count="0" />
       <LineId Id="221" Count="0" />
       <LineId Id="200" Count="5" />
+      <LineId Id="302" Count="0" />
       <LineId Id="251" Count="5" />
       <LineId Id="250" Count="0" />
       <LineId Id="187" Count="0" />
